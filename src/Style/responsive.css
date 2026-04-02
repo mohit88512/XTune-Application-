@@ -1,0 +1,493 @@
+/* ============================================
+   HAMBURGER — desktop pe hidden, phone pe dikhe
+   ============================================ */
+.hamburger-btn {
+  display: none;
+}
+
+/* ============================================
+   TABLET — max-width: 768px
+   ============================================ */
+@media (max-width: 768px) {
+  :root {
+    --homeImg: 18vw;
+    --mainDivH: auto;
+    --pushBtn: 30px;
+  }
+
+  .Navbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .navbar-links ul {
+    gap: 15px;
+  }
+
+  .navbar-search {
+    width: 100%;
+    order: 4;
+  }
+
+  /* Main layout — column */
+  .main-div {
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+
+  /* Sidebar full width */
+  .sidebar {
+  width: 100% !important;
+  height: auto;
+  max-height: none !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 12px !important;
+  }
+
+  .sidebarSong-list {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 10px !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding: 5px 0;
+}
+
+.sidebarSong {
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 8px 5px !important;
+  border-radius: 10px !important;
+  text-align: center !important;
+  background: #1b2626 !important;
+  min-width: unset !important;
+}
+
+.sidebarSong img {
+  width: 100% !important;
+  height: 80px !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+}
+
+.sidebarSong span {
+  font-size: 0.75rem !important;
+  width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+  /* Content pages full width */
+  .home,
+  .musicList,
+  .explore,
+  .playlist-page,
+  .search-page {
+    width: 100% !important;
+    height: auto;
+    min-height: 60vh;
+    padding-bottom: 120px !important;
+    margin-top: 6px !important;
+    padding-top: 0 !important;
+  }
+
+
+  .music-header img {
+    width: 18vw;
+    min-width: 100px;
+  }
+
+  .music-block {
+    width: 95%;
+  }
+
+  /* Footer */
+  .footer {
+    height: auto;
+    padding: 10px 15px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .footer-song-info,
+  .footer-center {
+    width: 100%;
+  }
+
+  .display-range {
+    width: 60vw;
+  }
+
+  .volume-control {
+    width: 100%;
+    justify-content: center;
+    padding-right: 0;
+    margin-left: 0;
+  }
+
+  .volume-control input[type="range"] {
+    width: 40%;
+  }
+
+  /* Login */
+  .loginBox,
+  .signupBox {
+    width: 65vw;
+    min-width: 280px;
+  }
+
+  .explore-grid {
+    grid-template-columns: repeat(auto-fill, minmax(18%, 1fr));
+    gap: 2%;
+  }
+}
+
+/* ============================================
+   PHONE — max-width: 480px
+   ============================================ */
+@media (max-width: 480px) {
+  :root {
+    --homeImg: 28vw;
+    --pushBtn: 28px;
+  }
+
+  /* =====================
+     NAVBAR — hamburger
+     ===================== */
+  .Navbar {
+  flex-wrap: wrap;
+  height: auto;
+  padding: 6px 12px;
+  gap: 6px;
+  position: relative;
+  align-items: center;
+}
+
+  /* hamburger show karo */
+  .hamburger-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 0;  /* right side pe push */
+    order: 1;
+  }
+
+  /* links hide karo by default */
+  .navbar-links {
+    display: none;
+    position: fixed;
+    top: 10vh;
+    left: 0;
+    width: 100%;
+    background: var(--navPrimary);
+    z-index: 999;
+    padding: 10px 0;
+    border-top: 1px solid #2a2a2a;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  }
+
+  /* open hone pe dikhe */
+  .navbar-links.open {
+    display: block !important;
+  }
+
+  .navbar-links ul {
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .navbar-links ul li {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 1rem;
+  }
+
+  /* search bar bhi menu mein */
+  .navbar-search {
+  display: flex;
+  width: 100%;
+  padding: 6px 12px;
+  order: 4;
+}
+
+  .navbar-user {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    order: 3;
+    margin-left: 8px;
+  }
+
+  .navbar-logo {
+    width: 45px;
+    height: 38px;
+    order: 2;
+  }
+
+  .navbar-button {
+    order: 3;
+    margin-left: auto; /* ← RIGHT side pe push */
+  }
+
+  /* =====================
+     MAIN LAYOUT
+     ===================== */
+  .main-div {
+    flex-direction: column !important;
+    gap: 4px;
+  }
+
+  /* =====================
+     SIDEBAR — grid upar
+     ===================== */
+  .sidebar {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 10px;
+    border-radius: 8px;
+    order: -1; /* home ke upar */
+  }
+
+  .sidebar-heading {
+    font-size: 1rem;
+    padding: 6px 0;
+    margin-bottom: 10px;
+    position: static; /* sticky hatao phone pe */
+  }
+
+  /* grid */
+  .sidebarSong-list {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 10px !important;
+    margin: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 5px 0;
+  }
+
+  .sidebarSong {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 8px 5px !important;
+    border-radius: 10px !important;
+    text-align: center !important;
+    background: #1b2626 !important;
+    min-width: unset !important;
+  }
+
+  .sidebarSong img {
+    width: 100% !important;
+    height: 65px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+  }
+
+  .sidebarSong span {
+    font-size: 0.7rem !important;
+    width: 100% !important;
+    max-width: unset !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .no-recent-songs {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    grid-column: 1 / -1;
+  }
+
+  /* =====================
+     CONTENT PAGES
+     ===================== */
+  .home,
+  .musicList,
+  .explore,
+  .playlist-page,
+  .search-page {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 50vh;
+    padding: 8px;
+    padding-bottom: 130px !important;
+    margin-top: 6px !important;
+    padding-top: 0 !important;
+  }
+
+  /* Home */
+  .block {
+    gap: 10px;
+    padding: 6px;
+  }
+
+  /* MusicList */
+  .music-header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 8px;
+    gap: 10px;
+  }
+
+  .music-header img {
+    width: 40vw;
+    min-width: 120px;
+  }
+
+  .music-block {
+    width: 100%;
+    margin: 6px 0;
+  }
+
+  .music-block ul li {
+    gap: 8px;
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  .music-block img {
+    width: 40px;
+  }
+
+  .music-block ul li .playlist-btn {
+    font-size: 1rem;
+    padding: 4px 8px;
+  }
+
+  /* =====================
+     FOOTER
+     ===================== */
+  .footer {
+    padding: 8px 10px;
+    gap: 6px;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .footer-song-info {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .footer-song-info img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .footer-song-text strong {
+    font-size: 0.85rem;
+  }
+
+  .footer-song-text span {
+    font-size: 0.75rem;
+  }
+
+  .footer-center {
+    width: 100%;
+  }
+
+  .display-range {
+    width: 50vw;
+  }
+
+  .button {
+    gap: 0.6rem;
+  }
+
+  .time {
+    font-size: 0.7rem;
+  }
+
+  .volume-control {
+    width: 100%;
+    justify-content: center;
+    padding-right: 0;
+    margin-left: 0;
+  }
+
+  .volume-control input[type="range"] {
+    width: 30%;
+  }
+
+  /* =====================
+     LOGIN / SIGNUP
+     ===================== */
+  .loginBox,
+  .signupBox {
+    width: 92vw;
+    min-width: unset;
+    padding: 20px 15px;
+    border-radius: 15px;
+    min-height: auto;
+  }
+
+  .loginBox h1,
+  .signupBox h1 {
+    font-size: 1.2rem;
+    margin-top: 4%;
+    margin-bottom: 4%;
+  }
+
+  .loginForm input,
+  .signupForm input {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+
+  .loginForm button,
+  .signupForm button {
+    width: 55%;
+    font-size: 0.875rem;
+  }
+
+  /* =====================
+     EXPLORE
+     ===================== */
+  .explore-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .explore-card p {
+    font-size: 0.72rem;
+  }
+
+  /* =====================
+     PLAYLIST
+     ===================== */
+  .playlist-page h1,
+  .search-page h1 {
+    font-size: 1.2rem;
+  }
+
+  .playlist-song,
+  .search-song {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .playlist-song img,
+  .search-song img {
+    width: 40px;
+  }
+
+  .playlist-remove-btn,
+  .search-add-btn {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+}

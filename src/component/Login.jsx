@@ -1,0 +1,70 @@
+import React, { useEffect, useRef, useState } from "react";
+import logo from "../photos/tuneXlogo.png";
+import axios from "axios";
+
+import { useDispatch } from "react-redux";
+import { fetchRecentSongs } from "../redux/recentSongsSlice";
+import { fetchPlaylist } from "../redux/playlistSlice";  // ← import karo
+import { setUser } from "../redux/userSlice";
+
+
+const Login = ({ closeLogin, openSignup}) => {
+  const [flag,setFlag]=useState(false);
+  let emailRef = useRef();
+  let passwordRef = useRef();
+  const dispatch = useDispatch();
+
+  const API = import.meta.env.VITE_API_URL // ← .env se lo
+
+  async function login(e) {
+  e.preventDefault();
+  try {
+    await axios.post(
+      `${API}login`,
+      {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      },
+      { withCredentials: true }  // ← cookie save hogi
+    )
+    .then((res) => {
+      dispatch(setUser(res.data.data.userName));  // ← user ko redux me bhi save karo
+      dispatch(fetchRecentSongs());  // ← login hote hi DB se songs load karo
+      dispatch(fetchPlaylist());
+    });
+    emailRef.current.value = "";
+    passwordRef.current.value = "";
+    closeLogin();
+  } catch (err) {
+    console.log(err.response?.data);
+  }
+}
+
+  return (
+    <div className="loginBox">
+      <button className="closeLogin" onClick={closeLogin}>✕</button>
+      <img src={logo} alt="" />
+      <h1>Welcome back</h1>
+      <form
+        className="loginForm"
+        onSubmit={(e) => {
+          login(e);
+        }}
+      >
+        <input type="text" placeholder="Enter your email" ref={emailRef} />
+        <input
+          type="password"
+          placeholder="Enter your password"
+          ref={passwordRef}
+        />
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account ?</p>
+      <button className="signUpBtn" onClick={openSignup}>
+        Sign up
+      </button>
+    </div>
+  );
+};
+
+export default Login;
