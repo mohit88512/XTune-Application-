@@ -19,22 +19,20 @@ const Login = ({ closeLogin, openSignup}) => {
   async function login(e) {
   e.preventDefault();
   try {
-    await axios.post(
+    const res = await axios.post(
       `${API}login`,
       {
         email: emailRef.current.value,
         password: passwordRef.current.value,
       },
-      { withCredentials: true }  // ← cookie save hogi
-    )
-    .then((res) => {
-      dispatch(setUser(res.data.data.userName));  // ← user ko redux me bhi save karo
-      dispatch(fetchRecentSongs());  // ← login hote hi DB se songs load karo
-      dispatch(fetchPlaylist());
-    });
+      { withCredentials: true }
+    );
+    dispatch(setUser(res.data.data.userName));
+    await dispatch(fetchRecentSongs());   // ← await karo
+    await dispatch(fetchPlaylist());      // ← await karo
     emailRef.current.value = "";
     passwordRef.current.value = "";
-    closeLogin();
+    closeLogin();                         // ← sab ke baad band karo
   } catch (err) {
     console.log(err.response?.data);
   }

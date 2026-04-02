@@ -16,16 +16,12 @@ import Playlist from "./component/Playlist";
 import Search from "./component/Search";
 
 const App = () => {
-  const [active, setActive] = useState("login");
-
-  const {name}= useSelector(state=>state.user) 
-  
+  const { name } = useSelector(state => state.user);
+  const [active, setActive] = useState(name ? null : "login"); 
   // user mil gaya to login/signup band karo
   useEffect(() => {
   if(name){
     setActive(null);
-  } else {
-    setActive("login");
   }
 }, [name]);
 
