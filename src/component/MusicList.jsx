@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import musicList from "../data/musiclist";
 import ImageContext from "../context/Imagecontext";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
