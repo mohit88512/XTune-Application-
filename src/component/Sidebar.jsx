@@ -15,7 +15,7 @@ const Sidebar = ({song}) => {
 
   // Redux se recent songs lo — ab objects hain { title, poster }
   const recentSongs = useSelector((state) => {
-  console.log("recentSongs state:", state.recentSongs);
+  // console.log("recentSongs state:", state.recentSongs);
   return state.recentSongs.songs;
 }) || [];
   return (

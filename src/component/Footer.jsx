@@ -7,8 +7,9 @@ import {
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { useSelector, shallowEqual } from "react-redux";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { faVolumeMute, faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
+import { setSongTitle } from "../redux/songTitleSlice";
 
 const Footer = () => {
   const API = import.meta.env.VITE_API_URL;
@@ -21,6 +22,8 @@ const Footer = () => {
   const [prevVolume, setPrevVolume] = useState(1); // for mute toggle
 
 const {song} = useSelector(state => state.songTitle);
+
+const dispatch = useDispatch();
 
   const audioRef = useRef(null);
   const prevSongRef = useRef("");
@@ -144,6 +147,28 @@ function handleMute() {
     if (audioRef.current) audioRef.current.volume = prevVolume;
   }
 }
+
+function handlePrev() {
+  const list = songs?.songs;
+  if (!list || !song) return;
+  const index = list.findIndex((s) => s.title === song);
+  if (index > 0) {
+    const prevSong = list[index - 1].title;
+    songRef.current = prevSong;
+    dispatch(setSongTitle(prevSong));
+  }
+}
+
+function handleNext() {
+  const list = songs?.songs;
+  if (!list || !song) return;
+  const index = list.findIndex((s) => s.title === song);
+  if (index < list.length - 1) {
+    const nextSong = list[index + 1].title;
+    songRef.current = nextSong;
+    dispatch(setSongTitle(nextSong));
+  }
+}
   return (
   <div className="footer">
     <audio ref={audioRef} src={songsrc} preload="auto" />
@@ -160,11 +185,11 @@ function handleMute() {
     {/* Center — controls + seekbar */}
     <div className="footer-center">
       <div className="button">
-        <FontAwesomeIcon className="backbutton" icon={faBackwardStep} size="xl" style={{ color: "rgb(63,63,63)" }} />
+        <FontAwesomeIcon className="backbutton" icon={faBackwardStep} size="xl" style={{ color: "rgb(63,63,63)", cursor: "pointer" }} onClick={handlePrev} />
         <div className="pauseButton" onClick={handlePlayPause}>
           <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} size="xl" style={{ color: "rgb(63,63,63)" }} />
         </div>
-        <FontAwesomeIcon className="forwardbutton" icon={faForwardStep} size="xl" style={{ color: "rgb(63,63,63)" }} />
+        <FontAwesomeIcon className="forwardbutton" icon={faForwardStep} size="xl" style={{ color: "rgb(63,63,63)", cursor: "pointer" }} onClick={handleNext} /> 
       </div>
       <div className="song-range">
         <h4 className="time">{formatTime(currentTime)}</h4>

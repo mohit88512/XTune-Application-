@@ -31,6 +31,24 @@ body {
   --mainDivH: 80vh;
 }
 
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spinnerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.spinnerIcon {
+  animation: spin 1s linear infinite;
+  height: 16px;
+  width: 16px;
+}
+
 /* =====================
    NAVBAR
    ===================== */
